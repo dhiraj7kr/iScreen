@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #000;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border-bottom: 1px solid #ddd; /* Thin line for normal mode */
+  position: relative; /* Added for positioning the button */
+}
+
+.part-a, .part-b {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.part-a {
+  flex: 1;
+  background-color: #fff;
+  color: #000;
+  border-bottom: 3px solid #ddd; /* Thin line for normal mode */
+  padding-right: 50px; /* Ensure space for fullscreen button */
+}
+
+.part-b {
+  flex: 1;
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#calendar {
+  color: #000;
+}
+
+#calendar-header {
+  font-size: calc(100vh / 20); /* Responsive font size */
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#calendar table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: calc(100vh / 25); /* Responsive font size */
+}
+
+#calendar th, #calendar td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#calendar th {
+  background-color: #f0f0f0;
+}
+
+#calendar td {
+  background-color: #fff;
+}
+
+#calendar td.current-day {
+  background-color: #007bff;
+  color: #fff;
+}
+
+#current-date-time {
+  text-align: center;
+  width: 100%;
+}
+
+#current-date {
+  font-size: calc(100vh / 20); /* Responsive font size */
+  margin: 0;
+}
+
+#current-time {
+  font-size: calc(100vh / 10); /* Responsive font size */
+  font-weight: bold;
+  margin: 0;
+}
+
+#fullscreen-button {
+  position: absolute;
+  top: 20px; /* Increased margin from the top */
+  right: 20px; /* Increased margin from the right */
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 12px 24px; /* Increased padding */
+  cursor: pointer;
+  font-size: 1em;
+  z-index: 1000; /* Ensure the button is on top */
+  border-radius: 4px; /* Optional: adds rounded corners */
+  transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+#fullscreen-button:hover {
+  background-color: #444;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+      flex-direction: column;
+  }
+  .part-a {
+      border-bottom: 3px solid #ddd; /* Thin line for normal mode */
+      padding-right: 20px; /* Adjust padding for smaller screens */
+  }
+}
+
+@media (orientation: landscape) {
+  .container {
+      flex-direction: row;
+  }
+  .part-a, .part-b {
+      width: 50%;
+      overflow: auto;
+  }
+  .part-a {
+      border-right: 3px solid #ddd; /* Thin line for landscape mode */
+  }
+}
+
+@media (min-width: 769px) {
+  #calendar {
+      font-size: calc(100vh / 20); /* Larger font size for bigger screens */
+  }
+
+  #current-date {
+      font-size: calc(100vh / 15); /* Larger font size for bigger screens */
+  }
+
+  #current-time {
+      font-size: calc(100vh / 7); /* Larger font size for bigger screens */
+  }
+}
+
+@media (max-width: 480px) {
+  #current-date {
+      font-size: 1.5em;
+  }
+
+  #current-time {
+      font-size: 3em;
+  }
+}

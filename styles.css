@@ -92,8 +92,8 @@ body {
   position: absolute;
   top: 20px; /* Increased margin from the top */
   right: 20px; /* Increased margin from the right */
-  background-color: #000;
-  color: #fff;
+  background-color: #b4b2b2;
+  color: #000000;
   border: none;
   padding: 12px 24px; /* Increased padding */
   cursor: pointer;
@@ -102,6 +102,7 @@ body {
   border-radius: 4px; /* Optional: adds rounded corners */
   transition: background-color 0.3s ease; /* Smooth color transition */
 }
+
 
 #fullscreen-button:hover {
   background-color: #444;

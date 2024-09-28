@@ -1,36 +1,35 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: #fff;
-  color: #000;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  overflow: hidden; /* Prevent scrolling */
 }
 
 .container {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  border-bottom: 1px solid #ddd; /* Thin line for normal mode */
-  position: relative; /* Added for positioning the button */
+  position: relative;
 }
 
 .part-a, .part-b {
-  padding: 20px;
+  padding: 10px;
   box-sizing: border-box;
+  overflow: hidden; /* Ensure content stays within the screen */
 }
 
 .part-a {
   flex: 1;
   background-color: #fff;
-  color: #000;
-  border-bottom: 3px solid #ddd; /* Thin line for normal mode */
-  padding-right: 50px; /* Ensure space for fullscreen button */
+  color: #333;
 }
 
 .part-b {
   flex: 1;
   background-color: #fff;
-  color: #000;
+  color: #333;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,38 +37,34 @@ body {
 }
 
 #calendar {
-  color: #000;
+  color: #333;
 }
 
 #calendar-header {
-  font-size: calc(100vh / 20); /* Responsive font size */
+  font-size: calc(100vh / 22); /* Slightly smaller font for header */
   text-align: center;
   margin-bottom: 10px;
+  font-weight: 600;
+  color: #007bff;
 }
 
 #calendar table {
   width: 100%;
   border-collapse: collapse;
-  font-size: calc(100vh / 25); /* Responsive font size */
+  font-size: calc(100vh / 28); /* Smaller font size for days */
 }
 
 #calendar th, #calendar td {
-  border: 1px solid #ddd;
-  padding: 8px;
+  border: 1px solid #e5e5e5;
+  padding: 5px;
   text-align: center;
-}
-
-#calendar th {
-  background-color: #f0f0f0;
-}
-
-#calendar td {
-  background-color: #fff;
 }
 
 #calendar td.current-day {
   background-color: #007bff;
   color: #fff;
+  font-weight: bold;
+  border-radius: 4px;
 }
 
 #current-date-time {
@@ -78,80 +73,118 @@ body {
 }
 
 #current-date {
-  font-size: calc(100vh / 20); /* Responsive font size */
+  font-size: calc(100vh / 25); /* Smaller font size for day, month, year */
   margin: 0;
+  font-weight: 400;
 }
 
 #current-time {
-  font-size: calc(100vh / 10); /* Responsive font size */
+  font-size: calc(100vh / 8); /* Larger font for time */
   font-weight: bold;
   margin: 0;
+  color: #007bff;
 }
 
-#fullscreen-button {
+#fullscreen-icon {
   position: absolute;
-  top: 20px; /* Increased margin from the top */
-  right: 20px; /* Increased margin from the right */
-  background-color: #b4b2b2;
-  color: #000000;
-  border: none;
-  padding: 12px 24px; /* Increased padding */
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
   cursor: pointer;
-  font-size: 1em;
-  z-index: 1000; /* Ensure the button is on top */
-  border-radius: 4px; /* Optional: adds rounded corners */
-  transition: background-color 0.3s ease; /* Smooth color transition */
+  z-index: 1000;
 }
 
-
-#fullscreen-button:hover {
-  background-color: #444;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
+/* Portrait mode for phones */
+@media (max-width: 768px) and (orientation: portrait) {
   .container {
-      flex-direction: column;
+    flex-direction: column;
   }
+
   .part-a {
-      border-bottom: 3px solid #ddd; /* Thin line for normal mode */
-      padding-right: 20px; /* Adjust padding for smaller screens */
+    flex: 2; /* Calendar takes up lower half */
+    border-bottom: 2px solid #ddd;
+  }
+
+  .part-b {
+    flex: 1; /* Time takes up upper half */
+    padding: 10px 0;
+  }
+
+  #calendar-header, #current-date, #current-time {
+    font-size: calc(100vh / 22); /* Adjust font size for smaller screens */
+  }
+
+  #calendar table {
+    font-size: calc(100vh / 30); /* Smaller font for the calendar cells */
+  }
+
+  #current-date {
+    font-size: calc(100vh / 25); /* Smaller day, month, year */
+  }
+
+  #current-time {
+    font-size: calc(100vh / 10); /* Slightly larger time for portrait */
   }
 }
 
-@media (orientation: landscape) {
+/* Landscape mode for phones */
+@media (max-width: 768px) and (orientation: landscape) {
   .container {
-      flex-direction: row;
+    flex-direction: row; /* Calendar on left, time on right */
   }
+
   .part-a, .part-b {
-      width: 50%;
-      overflow: auto;
+    width: 50%;
+    height: 100%;
+    padding: 10px;
   }
+
   .part-a {
-      border-right: 3px solid #ddd; /* Thin line for landscape mode */
+    border-right: 2px solid #ddd; /* Calendar in the left half */
+    padding: 10px;
+    overflow: auto; /* Ensure no overflow issues */
+  }
+
+  .part-b {
+    padding: 0 20px; /* Time in the right half */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #calendar-header {
+    font-size: calc(100vw / 30); /* Adjust based on width */
+  }
+
+  #calendar table {
+    font-size: calc(100vw / 35); /* Smaller font size for calendar in landscape */
+  }
+
+  #current-date {
+    font-size: calc(100vw / 20); /* Smaller for day, month, year */
+  }
+
+  #current-time {
+    font-size: calc(100vw / 8); /* Larger time font for landscape */
   }
 }
 
+/* Default styling for larger screens (laptops and desktops) */
 @media (min-width: 769px) {
-  #calendar {
-      font-size: calc(100vh / 20); /* Larger font size for bigger screens */
+  .container {
+    flex-direction: column;
   }
 
-  #current-date {
-      font-size: calc(100vh / 15); /* Larger font size for bigger screens */
+  #calendar-header {
+    font-size: calc(100vh / 18); /* Larger font size for bigger screens */
   }
 
-  #current-time {
-      font-size: calc(100vh / 7); /* Larger font size for bigger screens */
-  }
-}
-
-@media (max-width: 480px) {
-  #current-date {
-      font-size: 1.5em;
+  #current-date, #current-time {
+    font-size: calc(100vh / 15);
   }
 
-  #current-time {
-      font-size: 3em;
+  #calendar table {
+    font-size: calc(100vh / 23);
   }
 }
